@@ -1,0 +1,54 @@
+﻿@model IEnumerable<AerolineaV1.Models.Reservacion>
+
+@{
+    ViewData["Title"] = "Lista de Reservaciones";
+}
+
+<h3>Reservaciones Registradas</h3>
+<hr />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaisDestino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoriaVuelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PosAsiento)
+            </th>
+            <th>
+                <a asp-action="AddOrEdit" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Reservacion</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaisDestino)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoriaVuelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PosAsiento)
+                </td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.ReservaID"><i class="fa fa-marker fa-lg"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.ReservaID" class="text-danger ml-1" onclick="return confirm('Seguro que deseas borrar este registro?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

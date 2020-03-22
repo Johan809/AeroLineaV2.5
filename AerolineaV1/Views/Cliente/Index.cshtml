@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AerolineaV1.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Clientes Registrados</h3>
+<hr />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pasaporte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nacionalidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                <a asp-action="AddOrEdit" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Cliente</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pasaporte)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cedula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nacionalidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.ClienteID"><i class="fa fa-marker fa-lg"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClienteID" class="text-danger ml-1" onclick="return confirm('Seguro que deseas borrar este registro?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="form-row text-center">
+    <a class="btn btn-outline-primary" asp-controller="Reservacion" asp-action="AddOrEdit"><i class="fa fa-lg fa-plus-check"></i> Hacer una Reservacion</a>
+</div>
